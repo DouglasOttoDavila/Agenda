@@ -1,15 +1,9 @@
 package agenda;
 
-/* import java.util.Arrays; */
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-        //variaveis
-        /* String[] nome = new String [maxContatos];
-        int[] idade = new int [maxContatos];
-        float[] altura = new float [maxContatos]; */
 
         String nome;
         int idade;
@@ -19,7 +13,6 @@ public class App {
 
         Commons com = new Commons();
         Agenda ag = new Agenda();
-        int maxContatos = ag.getMaxContatos();
         int opcao = 0;
         int contAgenda = 0;
 
@@ -33,7 +26,7 @@ public class App {
             switch (opcao) {
                 case 1:
                     com.limparTela();
-                    System.out.println("Insira as informações do contato " + (contAgenda+1) + ".\nPressione ENTER para continuar.");
+                    System.out.println("Insira as informações do contato " + (ag.volumeContatos+1) + ".");
                     scan.nextLine();
                     /* com.aguardaInput(); */
                     System.out.println("Nome: ");
@@ -45,11 +38,18 @@ public class App {
                     System.out.println("Altura: ");
                     altura = scan.nextFloat();
 
-                    ag.armazenarPessoa(contAgenda, nome, idade, altura);
-                    contAgenda++;
+                    ag.armazenarPessoa(nome, idade, altura);
+                    
                 break;
     
                 case 2:
+                    com.limparTela();
+                    String remContato;
+                    System.out.println("Informe o nome do contato a ser removido: ");
+                    remContato = scan.next();
+                    com.limparTela();
+                    ag.removePessoa(remContato);
+                    com.aguardaInput();
                 break;
     
                 case 3:
@@ -66,7 +66,7 @@ public class App {
 
                 case 5:
                     com.limparTela();
-                    ag.imprimeAgenda(maxContatos);
+                    ag.imprimeAgenda();
                     com.aguardaInput();
                 break;
 
@@ -76,22 +76,6 @@ public class App {
             }
    
         }
-        
-        
-
-
-        for (int i = 0; i < maxContatos; i++) {
-            
-
-        }
-
-        
-        
-        /* System.out.println("Nomes: \n");
-        for (int i = 0; i < maxContatos; i++){
-            System.out.println(Arrays.toString(ag.getNome(i)));
-        } */
-        
 
         scan.close();
     }

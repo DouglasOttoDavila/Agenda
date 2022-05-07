@@ -1,6 +1,9 @@
 package agenda;
 
-/* import java.util.Arrays; */
+/* import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors; */
 
 public class Agenda {
 
@@ -20,6 +23,15 @@ public class Agenda {
     private float[] altura = new float [maxContatos];
 
     int posicao;
+    int volumeContatos = 0;
+
+    public int getVolumeContatos() {
+        return volumeContatos;
+    }
+
+    public void setVolumeContatos(int volumeContatos) {
+        this.volumeContatos = volumeContatos;
+    }
 
     //CONSTRUTORES
     public String getNome(int index) {
@@ -47,17 +59,63 @@ public class Agenda {
     }
 
     //METODOS
-    public void armazenarPessoa(int index, String nome, int idade, float altura){
+    public void armazenarPessoa(String nome, int idade, float altura){
         /* for (int i = 0; i < maxContatos; i++){
             if 
         } */
-        this.nome[index] = nome;
-        this.idade[index] = idade;
-        this.altura[index] = altura;
+
+        /* nomeLista.set(index, nome);
+        idadeLista.set(index, idade);
+        alturaLista.set(index, altura); */
+
+        /* this.nome = ArrayUtils.remove(this.nome, index); */
+
+        this.nome[this.volumeContatos] = nome;
+        this.idade[this.volumeContatos] = idade;
+        this.altura[this.volumeContatos] = altura;
+
+        this.volumeContatos++;
     }
 
     public void removePessoa(String nome){
+
+        int posVetor = 0;
+
+        for (int i = 0; i < this.volumeContatos; i++){
+            if (this.nome[i] == nome){
+                posVetor = i;
+            }
+        }
+
+        if (!(posVetor >= 0 && posVetor < this.volumeContatos)){
+            throw new IllegalArgumentException("Posição inválida");
+        }
+
+        for (int j = posVetor; j < this.volumeContatos-1; j++) {
+            this.nome[j] = this.nome[j+1];
+            this.idade[j] = this.idade[j+1];
+            this.altura[j] = this.altura[j+1];
+
+        }
+        this.volumeContatos--;
         
+
+        /* List<String> nomeList = new ArrayList<>(Arrays.asList(this.nome)); */
+        /* List<String> nomeLista = Arrays.asList(this.nome); */
+        
+        //SAVE
+        /* for (int i = 0; i < maxContatos; i++){
+            
+            if (this.nome[i] == nome){
+                this.nome[i] = this.nome[i+1];
+                this.idade[i] = this.idade[i+1];
+                this.altura[i] = this.altura[i+1];
+                
+                System.out.println("Contato removido com sucesso!");
+            } else if (this.nome[i] != nome) {
+                System.out.println("...");
+            }
+        } */
     }
 
     public int buscaPessoa(String nome){
@@ -70,9 +128,9 @@ public class Agenda {
         return posicao;
     }
 
-    public void imprimeAgenda(int maxContatos){
+    public void imprimeAgenda(){
         System.out.println("AGENDA\n");
-        for (int i = 0; i < maxContatos; i++){
+        for (int i = 0; i < this.volumeContatos; i++){
             if (this.nome[i] != null){
                 String pessoa = this.nome[i];
                 int idade = this.idade[i];
@@ -84,6 +142,7 @@ public class Agenda {
             }
             
         }
+        System.out.println("Sua agenda possui: " + volumeContatos + " contatos.");
     }
 
     public void imprimePessoa(int index){

@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors; */
 
 public class Agenda {
+    Commons com = new Commons();
 
-    private int maxContatos = 10;
+    private int maxContatos = 3;
 
     public int getMaxContatos() {
         return maxContatos;
@@ -60,68 +61,50 @@ public class Agenda {
 
     //METODOS
     public void armazenarPessoa(String nome, int idade, float altura){
-        /* for (int i = 0; i < maxContatos; i++){
-            if 
-        } */
+        if (volumeContatos >= maxContatos) {
+            System.out.println("Não é possível adicionar mais de " + maxContatos + " na agenda.");
+            System.out.println("Remova algum  contato antes de adicionar um novo.");
+            com.aguardaInput();
+        } else {
+            this.nome[this.volumeContatos] = nome;
+            this.idade[this.volumeContatos] = idade;
+            this.altura[this.volumeContatos] = altura;
 
-        /* nomeLista.set(index, nome);
-        idadeLista.set(index, idade);
-        alturaLista.set(index, altura); */
-
-        /* this.nome = ArrayUtils.remove(this.nome, index); */
-
-        this.nome[this.volumeContatos] = nome;
-        this.idade[this.volumeContatos] = idade;
-        this.altura[this.volumeContatos] = altura;
-
-        this.volumeContatos++;
+            this.volumeContatos++;
+            com.limparTela();
+            System.out.println("Contato criado com sucesso!");
+            System.out.println("Nome: "+this.nome[this.volumeContatos-1]);
+            System.out.println("Idade: "+this.idade[this.volumeContatos-1]);
+            System.out.println("Altura: "+this.altura[this.volumeContatos-1]);
+            com.aguardaInput();
+        }
     }
 
-    public void removePessoa(String nome){
-
-        int posVetor = 0;
-
-        for (int i = 0; i < this.volumeContatos; i++){
-            if (this.nome[i] == nome){
-                posVetor = i;
-            }
+    public void removePessoa(int posPessoa, String nome){
+        
+        if (!(posPessoa >= 0 && posPessoa < this.volumeContatos)){
+            throw new IllegalArgumentException("Posição inválida.");
         }
-
-        if (!(posVetor >= 0 && posVetor < this.volumeContatos)){
-            throw new IllegalArgumentException("Posição inválida");
+        for (int i = posPessoa; i < this.volumeContatos-1; i++){
+            this.nome[i] = this.nome[i+1];
+            this.idade[i] = this.idade[i+1];
+            this.altura[i] = this.altura[i+1];
         }
-
-        for (int j = posVetor; j < this.volumeContatos-1; j++) {
-            this.nome[j] = this.nome[j+1];
-            this.idade[j] = this.idade[j+1];
-            this.altura[j] = this.altura[j+1];
-
-        }
+        System.out.println("Contato removido com sucesso!"); 
         this.volumeContatos--;
-        
+    }
 
-        /* List<String> nomeList = new ArrayList<>(Arrays.asList(this.nome)); */
-        /* List<String> nomeLista = Arrays.asList(this.nome); */
-        
-        //SAVE
-        /* for (int i = 0; i < maxContatos; i++){
-            
-            if (this.nome[i] == nome){
-                this.nome[i] = this.nome[i+1];
-                this.idade[i] = this.idade[i+1];
-                this.altura[i] = this.altura[i+1];
-                
-                System.out.println("Contato removido com sucesso!");
-            } else if (this.nome[i] != nome) {
-                System.out.println("...");
-            }
-        } */
+
+    public void mostraArray(){
+        for (int i = 0; i < this.volumeContatos; i++){
+            System.out.println(this.nome[i]);
+        }
     }
 
     public int buscaPessoa(String nome){
 
-        for (int i = 0; i < maxContatos; i++){
-            if (this.nome[i] == nome){
+        for (int i = 0; i < this.volumeContatos; i++){
+            if (nome.equals(this.nome[i])){
                 posicao = i;
             }
         }
@@ -146,14 +129,9 @@ public class Agenda {
     }
 
     public void imprimePessoa(int index){
-        String pessoa = this.nome[index];
-        int idade = this.idade[index];
-        float altura = this.altura[index];
-
-        System.out.println("Nome: " + pessoa.toString());
-        /* System.out.println("Nome: "+ Arrays.toString(this.nome)); */
-        System.out.println("Idade: "+ idade);
-        System.out.println("Altura: "+ altura +"\n");
+        System.out.println("Nome: " + this.nome[index]);
+        System.out.println("Idade: "+ this.idade[index]);
+        System.out.println("Altura: "+ this.altura[index]);
     }
     
 }

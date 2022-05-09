@@ -9,7 +9,7 @@ public class Commons {
     }
 
     public void aguardaInput() {
-        System.out.println("Pressione ENTER para continuar.");
+        System.out.println("<< Pressione ENTER para continuar >>");
         try{System.in.read();}
             catch(Exception e){}
     }

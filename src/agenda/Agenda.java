@@ -50,7 +50,6 @@ public class Agenda {
             this.nome[this.volumeContatos] = nome;
             this.idade[this.volumeContatos] = idade;
             this.altura[this.volumeContatos] = altura;
-
             this.volumeContatos++;
             com.limparTela();
             System.out.println("Contato criado com sucesso!");
@@ -111,7 +110,6 @@ public class Agenda {
 
     // Mostra um contato com base em sua posição na agenda
     public void imprimePessoa(int index) {
-
         if (!(index >= 0 && index < this.volumeContatos)) {
             com.limparTela();
             System.out.println("Posição inválida.");

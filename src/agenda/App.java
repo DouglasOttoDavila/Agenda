@@ -60,7 +60,7 @@ public class App {
                     scan.nextLine();
                     nome = scan.nextLine();
                     posPessoa = ag.buscaPessoa(nome);
-                    System.out.println("O contato " + nome + " está na posição " + posPessoa);
+                    System.out.println("O contato " + nome + " está na posição " + posPessoa+1 +" da agenda.");
                     com.aguardaInput();
                     break;
 

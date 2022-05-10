@@ -4,7 +4,7 @@ public class Agenda {
 
     Commons com = new Commons(); // Importa classe "Commons"
 
-    private int maxContatos = 10; // Cria constante maxContatos (define o máximo de contatos na agenda)
+    private int maxContatos = 10; // Define o máximo de contatos na agenda
 
     // VARIÁVEIS
     private String[] nome = new String[maxContatos]; // Array para nome dos contatos

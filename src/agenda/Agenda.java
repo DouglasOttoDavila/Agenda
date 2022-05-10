@@ -64,7 +64,9 @@ public class Agenda {
     public void removePessoa(int posPessoa, String nome) {
 
         if (!(posPessoa >= 0 && posPessoa < this.volumeContatos)) {
-            throw new IllegalArgumentException("Posição inválida.");
+            com.limparTela();
+            System.out.println("Posição inválida.");
+            com.aguardaInput();
         }
         for (int i = posPessoa; i < this.volumeContatos - 1; i++) {
             this.nome[i] = this.nome[i + 1];

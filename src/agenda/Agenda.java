@@ -80,11 +80,13 @@ public class Agenda {
 
     // Busca um contato na agenda através do nome
     public int buscaPessoa(String nome) {
+
         for (int i = 0; i < this.volumeContatos; i++) {
             if (nome.equals(this.nome[i])) {
                 posicao = i;
             }
         }
+
         return posicao;
     }
 

@@ -1,7 +1,7 @@
 ## Atividade de Programação Orientada a Objeto (POO)
 
 - UniRitter
-- Professor Victor
+- Professor Vitor
 
 ## (1,0) Crie uma classe Agenda que pode armazenar 10 pessoas e seja capaz de realizar as seguintes operações:
 
